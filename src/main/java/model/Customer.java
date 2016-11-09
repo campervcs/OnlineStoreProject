@@ -9,6 +9,7 @@ public class Customer {
     private String mail;
     private String password;
     private String role;
+    public Cart cart=Cart.getInstance();
 
     public Customer(String mail, String password, String role) {
         this.mail = mail;

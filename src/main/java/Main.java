@@ -1,6 +1,10 @@
 import model.Cart;
+import model.Customer;
+import model.Purchase;
 import model.product.Phone;
 import model.product.Product;
+import org.joda.time.DateTime;
+
 
 public class Main {
     public static void main(String args[])
@@ -8,10 +12,11 @@ public class Main {
         Product pr = new Phone("Nokia","nice phone");
         Product pr1 = new Phone("Nokia","nice phone");
         Cart cart = Cart.getInstance();
+        Customer vanya = new Customer("vanya@mail.ru","123","admin");
+        Purchase pur = new Purchase(pr,vanya.getID(),new DateTime());
+        System.out.println(pur.getDate());
         cart.pushProduct(pr);
         cart.pushProduct(pr1);
-        System.out.println(((Phone)cart.popProduct()).getID());
-        System.out.println(((Phone)cart.popProduct()).getID());
 
     }
 }
