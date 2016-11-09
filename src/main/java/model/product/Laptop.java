@@ -5,6 +5,8 @@ public class Laptop extends Product {
     private String graphicsCard;
     private String OS;
     private String resolution;
+    private static int id=0;
+    private final int curID;
     private int cpu_cores;
     private int cpu_rate;
     private int RAM;
@@ -15,6 +17,8 @@ public class Laptop extends Product {
 
     public Laptop(String model, String description) {
         super(model, description);
+        curID=id;
+        id++;
     }
     public void setModel(String model) {
         this.model = model;
@@ -120,6 +124,10 @@ public class Laptop extends Product {
 
     public boolean isCd_dvd() {
         return cd_dvd;
+    }
+
+    public int getID() {
+        return curID;
     }
 
 

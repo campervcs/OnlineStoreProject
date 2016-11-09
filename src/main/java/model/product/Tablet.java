@@ -3,6 +3,8 @@ package model.product;
 public class Tablet extends Product {
     private String resolution;
     private String OS;
+    private static int id=0;
+    private final int curID;
     private int diagonal;
     private int camera_MP;
     private int cpu_core;
@@ -13,6 +15,8 @@ public class Tablet extends Product {
 
     public Tablet(String model, String description) {
         super(model, description);
+        curID=id;
+        id++;
     }
     public void setRAM(int RAM) {
         this.RAM = RAM;
@@ -100,5 +104,9 @@ public class Tablet extends Product {
 
     public String getDescription() {
         return description;
+    }
+
+    public int getID() {
+        return curID;
     }
 }
