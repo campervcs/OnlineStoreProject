@@ -1,6 +1,6 @@
 package controller;
 
-import model.Customer;
+import model.customer.Customer;
 
 import java.io.BufferedReader;
 import java.io.File;

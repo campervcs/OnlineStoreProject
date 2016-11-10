@@ -1,6 +1,6 @@
 package controller;
 
-import model.Customer;
+import model.customer.Customer;
 
 public interface UserControllerDAO {
     String showUsers();

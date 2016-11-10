@@ -1,10 +1,7 @@
-package model;
+package model.customer;
 
 import model.product.Product;
 import org.joda.time.DateTime;
-
-import java.util.Calendar;
-import java.util.Date;
 
 public class Purchase{
     private Product product;
