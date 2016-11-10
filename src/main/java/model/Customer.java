@@ -62,7 +62,4 @@ public class Customer {
         return curID;
     }
 
-
-
-
 }

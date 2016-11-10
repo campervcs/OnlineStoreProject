@@ -1,6 +1,6 @@
 package model.product;
 
-public class Product {
+public abstract class Product{
     protected String model;
     protected String description;
 
