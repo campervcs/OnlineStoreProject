@@ -9,8 +9,10 @@ public class Customer {
     private String mail;
     private String password;
     private String role;
+    private Cart cart;
 
     public Customer(String mail, String password, String role) {
+        cart = Cart.getInstance();
         this.mail = mail;
         this.password = password;
         this.role=role;
@@ -56,6 +58,10 @@ public class Customer {
 
     public String getRole() {
         return role;
+    }
+
+    public Cart getCart() {
+        return cart;
     }
 
     public int getID() {

@@ -1,1 +1,11 @@
 Main.class
+model\product\Laptop.class
+model\customer\Customer.class
+model\product\Phone.class
+view\UserView.class
+controller\UserController.class
+model\product\Tablet.class
+controller\UserControllerDAO.class
+model\customer\Purchase.class
+model\product\Product.class
+model\customer\Cart.class

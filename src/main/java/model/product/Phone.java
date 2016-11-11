@@ -1,8 +1,7 @@
 package model.product;
 
 public class Phone extends Product {
-    private static int id=0;
-    private final int curID;
+    private int id;
     private String resolution;
     private String OS;
     private int diagonal;
@@ -16,8 +15,6 @@ public class Phone extends Product {
 
     public Phone(String model, String description) {
         super(model, description);
-        curID=id;
-        id++;
     }
 
     public void setRAM(int RAM) {
@@ -109,7 +106,7 @@ public class Phone extends Product {
     }
 
     public int getID() {
-        return curID;
+        return id;
     }
 
 

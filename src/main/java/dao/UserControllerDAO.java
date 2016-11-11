@@ -1,9 +1,9 @@
-package controller;
+package dao;
 
 import model.customer.Customer;
 
 public interface UserControllerDAO {
-    String showUsers();
+    void showUsers();
     void create(Customer customer);
     void update(Customer customer);
     void delete(String userName);

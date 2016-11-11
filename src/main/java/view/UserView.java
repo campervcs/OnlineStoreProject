@@ -1,9 +1,7 @@
 package view;
 
-import controller.UserController;
-
 public class UserView {
-    public UserView(){
-        System.out.println((new UserController()).showUsers());
+    public UserView(String view){
+        System.out.println(view);
     }
 }

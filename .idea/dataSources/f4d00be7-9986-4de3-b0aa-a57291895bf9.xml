@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MySQL - onlinestore@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+    <schema id="1" name="onlinestore">
+      <visible>1</visible>
+    </schema>
+    <schema id="2" name="information_schema"/>
+    <schema id="3" name="mysql"/>
+    <schema id="4" name="performance_schema"/>
+    <schema id="5" name="sys"/>
+    <table id="6" parent="1" name="customer"/>
+    <column id="7" parent="6" name="idcustomer">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="8" parent="6" name="fname">
+      <mandatory>1</mandatory>
+      <data-type>varchar(45)|0</data-type>
+    </column>
+    <column id="9" parent="6" name="lname">
+      <mandatory>1</mandatory>
+      <data-type>varchar(45)|0</data-type>
+    </column>
+    <column id="10" parent="6" name="mail">
+      <mandatory>1</mandatory>
+      <data-type>varchar(45)|0</data-type>
+    </column>
+    <column id="11" parent="6" name="password">
+      <mandatory>1</mandatory>
+      <data-type>varchar(45)|0</data-type>
+    </column>
+    <column id="12" parent="6" name="role">
+      <mandatory>1</mandatory>
+      <data-type>varchar(45)|0</data-type>
+    </column>
+    <index id="13" parent="6" name="idcustomer_UNIQUE">
+      <columns>idcustomer</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="14" parent="6" name="PRIMARY">
+      <columns>idcustomer</columns>
+      <primary>1</primary>
+    </key>
+    <key id="15" parent="6" name="idcustomer_UNIQUE">
+      <columns>idcustomer</columns>
+      <underlying-index>idcustomer_UNIQUE</underlying-index>
+    </key>
+  </database-model>
+</dataSource>

@@ -1,7 +1,8 @@
 package controller;
 
+import dao.UserControllerDAO;
 import model.customer.Customer;
-
+import view.UserView;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -9,7 +10,7 @@ import java.io.IOException;
 
 public class UserController implements UserControllerDAO {
     @Override
-    public String showUsers() {
+    public void showUsers() {
         File file = new File("src/main/resources/users.txt");
         StringBuilder sb = new StringBuilder();
 
@@ -23,7 +24,8 @@ public class UserController implements UserControllerDAO {
             catch(IOException e) {
                 throw new RuntimeException(e);
             }
-            return sb.toString();
+
+            new UserView(sb.toString());
     }
 
     @Override
