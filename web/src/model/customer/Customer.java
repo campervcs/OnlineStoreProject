@@ -6,16 +6,18 @@ public class Customer {
     private String fname;
     private String lname;
     private String mail;
+    private String username;
     private String password;
     private String role;
     private Cart cart;
 
-    public Customer(String mail, String password, String role, long id) {
+    public Customer(String mail, String username, String password, String role, long id) {
         cart = new Cart();
         this.mail = mail;
         this.password = password;
         this.role=role;
         this.id=id;
+        this.username=username;
     }
 
     public void setPassword(String password) {

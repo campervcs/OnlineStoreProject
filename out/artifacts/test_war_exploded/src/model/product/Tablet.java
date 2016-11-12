@@ -10,6 +10,7 @@ public class Tablet extends Product {
     private int memmory;
     private int battery;
     private int RAM;
+    private String cpu;
 
     public Tablet(String model, String description, float price, long id) {
         super(model, description, price, id);
@@ -113,5 +114,13 @@ public class Tablet extends Product {
 
     public void setPrice(float price){
         this.price=price;
+    }
+
+    public void setCpu(String cpu) {
+        this.cpu = cpu;
+    }
+
+    public String getCpu() {
+        return cpu;
     }
 }

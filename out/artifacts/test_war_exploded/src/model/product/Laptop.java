@@ -5,11 +5,12 @@ public class Laptop extends Product {
     private String graphicsCard;
     private String OS;
     private String resolution;
-    private int cpu_cores;
+    private int cpu_core;
     private int cpu_rate;
     private int RAM;
     private int HDD;
     private int SSD;
+    private int battery;
     private int USB_count;
     private boolean cd_dvd;
 
@@ -41,8 +42,8 @@ public class Laptop extends Product {
         this.resolution = resolution;
     }
 
-    public void setCpu_cores(int cpu_cores) {
-        this.cpu_cores = cpu_cores;
+    public void setCpu_core(int cpu_cores) {
+        this.cpu_core = cpu_cores;
     }
 
     public void setCpu_rate(int cpu_rate) {
@@ -95,8 +96,8 @@ public class Laptop extends Product {
         return resolution;
     }
 
-    public int getCpu_cores() {
-        return cpu_cores;
+    public int getCpu_core() {
+        return cpu_core;
     }
 
     public int getCpu_rate() {
@@ -135,6 +136,12 @@ public class Laptop extends Product {
         this.price=price;
     }
 
+    public void setBattery(int battery) {
+        this.battery = battery;
+    }
 
+    public int getBattery() {
+        return battery;
+    }
 
 }

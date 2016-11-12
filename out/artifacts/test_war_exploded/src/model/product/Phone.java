@@ -10,6 +10,7 @@ public class Phone extends Product {
     private int memmory;
     private int battery;
     private int RAM;
+    private String cpu;
 
 
     public Phone(String model, String description, float price, long id) {
@@ -116,6 +117,12 @@ public class Phone extends Product {
         this.price=price;
     }
 
+    public void setCpu(String cpu) {
+        this.cpu = cpu;
+    }
 
+    public String getCpu() {
+        return cpu;
+    }
 
 }

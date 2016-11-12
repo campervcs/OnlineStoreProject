@@ -1,7 +1,7 @@
 package controller;
 
-
 import com.mysql.jdbc.Connection;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.joda.time.DateTime;
 
 import javax.servlet.ServletException;
@@ -13,16 +13,10 @@ import java.io.IOException;
 @WebServlet("/controller.UserControllerServlet")
 public class UserControllerServlet extends HttpServlet {
 
-
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.getWriter().write("ok");
-        Connection connection;
-    }
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.getWriter().write("ok");
+        String uname = req.getParameter("username");
+        String pass = req.getParameter("password");
+        resp.getWriter().write(uname +" "+ DigestUtils.md5Hex(pass));
     }
 }
