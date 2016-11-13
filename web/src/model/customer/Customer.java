@@ -1,8 +1,6 @@
 package model.customer;
 
 public class Customer {
-
-    private final long id;
     private String fname;
     private String lname;
     private String mail;
@@ -11,12 +9,11 @@ public class Customer {
     private String role;
     private Cart cart;
 
-    public Customer(String mail, String username, String password, String role, long id) {
+    public Customer(String mail, String username, String password, String role) {
         cart = new Cart();
         this.mail = mail;
         this.password = password;
         this.role=role;
-        this.id=id;
         this.username=username;
     }
 
@@ -64,8 +61,12 @@ public class Customer {
         return cart;
     }
 
-    public long getID() {
-        return id;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
 }

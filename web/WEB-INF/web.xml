@@ -4,11 +4,19 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
     <servlet>
-        <servlet-name>UserControllerServlet</servlet-name>
-        <servlet-class>controller.UserControllerServlet</servlet-class>
+        <servlet-name>AuthorizationServlet</servlet-name>
+        <servlet-class>servlets.AuthoriztionServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegistrationServlet</servlet-name>
+        <servlet-class>servlets.RegistrationServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>UserControllerServlet</servlet-name>
+        <servlet-name>AuthorizationServlet</servlet-name>
         <url-pattern>/user</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistrationServlet</servlet-name>
+        <url-pattern>/register</url-pattern>
     </servlet-mapping>
 </web-app>
