@@ -18,7 +18,7 @@ public class AuthoriztionServlet extends HttpServlet {
         UserDBConnection user = new UserDBConnection();
         try {
             user.getByUsernameAndPassword(uname,DigestUtils.md5Hex(pass));
-            resp.getWriter().write(uname +" "+ DigestUtils.md5Hex(pass));
+            resp.getWriter().write("Hello "+uname);
         } catch (Exception e){
             resp.getWriter().write(e.getMessage());
         }

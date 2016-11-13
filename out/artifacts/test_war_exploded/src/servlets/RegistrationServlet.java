@@ -22,7 +22,7 @@ public class RegistrationServlet extends HttpServlet {
         UserDBConnection user = new UserDBConnection();
         try {
             user.create(customer);
-            resp.getWriter().write(mail +" "+ uname +" "+ DigestUtils.md5Hex(pass));
+            resp.getWriter().write("Succeful create!");
         } catch (Exception e) {
             resp.getWriter().write(e.getMessage());
         }
