@@ -46,9 +46,6 @@ public class UserDBConnection implements UserDAO {
                 connection = getDBConnection();
                 statement = connection.createStatement();
                 ResultSet res = statement.executeQuery("SELECT username FROM customer WHERE username = '" + customer.getUsername() + "'");
-                System.out.println(customer.getMail());
-                System.out.println(customer.getUsername());
-                System.out.println(customer.getPassword());
                 if(!res.next()) {
                     statement.executeUpdate("INSERT INTO customer (mail, username, password, role) VALUES ('"+customer.getMail()+"','"+customer.getUsername()+"','"+customer.getPassword()+"','"+customer.getRole()+"')");
                 }
@@ -71,7 +68,7 @@ public class UserDBConnection implements UserDAO {
 
         }
 
-    private static Connection getDBConnection() {
+        private static Connection getDBConnection() {
 
         Connection dbConnection = null;
 

@@ -2,6 +2,8 @@ package servlets;
 import datasource.UserDBConnection;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.joda.time.DateTime;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +20,7 @@ public class AuthoriztionServlet extends HttpServlet {
         UserDBConnection user = new UserDBConnection();
         try {
             user.getByUsernameAndPassword(uname,DigestUtils.md5Hex(pass));
-            resp.getWriter().write("Hello "+uname);
+            resp.sendRedirect("welcome.jsp");
         } catch (Exception e){
             resp.getWriter().write(e.getMessage());
         }
