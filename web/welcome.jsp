@@ -59,7 +59,7 @@
     <ul>
         <li><a href="#">About</a></li>
         <li><a href="#">Services</a></li>
-        <li><a href="#">Work</a></li>
+        <li><a href="/logout">logout</a></li>
     </ul>
     <div class="button">
         <a class="btn-open" href="#"></a>

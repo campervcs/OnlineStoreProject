@@ -6,10 +6,10 @@ public class Customer {
     private String mail;
     private String username;
     private String password;
-    private String role;
+    private Role role;
     private Cart cart;
 
-    public Customer(String mail, String username, String password, String role) {
+    public Customer(String mail, String username, String password, Role role) {
         cart = new Cart();
         this.mail = mail;
         this.password = password;
@@ -33,7 +33,7 @@ public class Customer {
         this.mail = mail;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
@@ -53,8 +53,8 @@ public class Customer {
         return password;
     }
 
-    public String getRole() {
-        return role;
+    public Role getRole() {
+        return this.role;
     }
 
     public Cart getCart() {

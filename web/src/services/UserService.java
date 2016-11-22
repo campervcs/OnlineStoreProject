@@ -1,14 +1,15 @@
-package datasource;
+package services;
 
-import com.mysql.fabric.jdbc.FabricMySQLDriver;
 import dao.UserDAO;
 import exceptions.CantFindUserException;
 import exceptions.UserExistException;
 import model.customer.Customer;
+import model.customer.Role;
+
 import java.sql.*;
 import java.util.List;
 
-public class UserDBConnection implements UserDAO {
+public class UserService implements UserDAO {
     private final static String URL = "jdbc:mysql://localhost:3306/onlinestore";
     private final static String USERNAME = "root";
     private final static String PASSWORD = "root";
@@ -22,7 +23,7 @@ public class UserDBConnection implements UserDAO {
             statement = connection.createStatement();
             ResultSet res = statement.executeQuery("SELECT * FROM customer WHERE username = '" + username + "' AND password = '" + password + "'");
             while (res.next()) {
-                customer = new Customer(res.getString("mail"), res.getString("username"), res.getString("password"), res.getString("role"));
+                customer = new Customer(res.getString("mail"), res.getString("username"), res.getString("password"), Role.valueOf(res.getString("role")));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -47,7 +48,7 @@ public class UserDBConnection implements UserDAO {
                 statement = connection.createStatement();
                 ResultSet res = statement.executeQuery("SELECT username FROM customer WHERE username = '" + customer.getUsername() + "'");
                 if(!res.next()) {
-                    statement.executeUpdate("INSERT INTO customer (mail, username, password, role) VALUES ('"+customer.getMail()+"','"+customer.getUsername()+"','"+customer.getPassword()+"','"+customer.getRole()+"')");
+                    statement.executeUpdate("INSERT INTO customer (mail, username, password, role) VALUES ('"+customer.getMail()+"','"+customer.getUsername()+"','"+customer.getPassword()+"','"+customer.getRole().toString()+"')");
                 }
                 else throw new UserExistException();
             } catch (SQLException e) {
