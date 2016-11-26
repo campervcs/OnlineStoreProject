@@ -1,8 +1,8 @@
 package servlets;
 
-import model.customer.Role;
+import models.customer.Role;
 import services.UserService;
-import model.customer.Customer;
+import models.customer.Customer;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.servlet.ServletException;
@@ -19,10 +19,13 @@ public class RegistrationServlet extends HttpServlet {
         String mail = req.getParameter("mail");
         String uname = req.getParameter("username");
         String pass = req.getParameter("password");
-        Customer customer = new Customer(mail,uname,DigestUtils.md5Hex(pass), Role.user);
-        UserService user = new UserService();
+        String adress = req.getParameter("adress");
+        String fname = req.getParameter("fname");
+        String lname = req.getParameter("lname");
+        Customer user = new Customer(fname,lname,mail,uname,DigestUtils.md5Hex(pass), Role.user,adress);
+        UserService userService = new UserService();
         try {
-            user.create(customer);
+            userService.create(user);
             resp.getWriter().write("Succeful create!");
         } catch (Exception e) {
             resp.getWriter().write(e.getMessage());

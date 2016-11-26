@@ -13,52 +13,11 @@
     <title>OnlineStore</title>
 </head>
 <body>
-<div class="cloud cloud1">
-    <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
-</div>
-
-<div class="cloud cloud2">
-    <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
-</div>
-
-<div class="sign">OPEN</div>
-<div class="store_roof">
-    <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
-</div>
-<div class="store_roof_opening"></div>
-<div class="store_window"></div>
-<div class="store_door"></div>
-<div class="store_sign">MYSTORE</div>
-<div class="store_frame_shadow"></div>
-<div class="store_frame"></div>
-<div class="store_inner_wall"></div>
-<div class="store_wall"></div>
-<div class="store_floor"></div>
-<div class="kerb"><div class="left"></div><div class="right"></div></div>
-<div class="road"></div>
-<div class="floor"></div>
-
-
+<%@include file="/index.html" %>
 <nav>
     <ul>
         <li><a href="#">About</a></li>
-        <li><a href="#">Services</a></li>
+        <li><a href="/update">Profile</a></li>
         <li><a href="/logout">logout</a></li>
     </ul>
     <div class="button">

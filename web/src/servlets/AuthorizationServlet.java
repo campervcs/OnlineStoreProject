@@ -1,5 +1,5 @@
 package servlets;
-import model.customer.Customer;
+import models.customer.Customer;
 import services.UserService;
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -14,15 +14,20 @@ import java.io.IOException;
 public class AuthorizationServlet extends HttpServlet {
 
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("/AuthorizationRegistration.jsp").forward(req, resp);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String uname = req.getParameter("username");
         String pass = req.getParameter("password");
-        UserService user = new UserService();
+        UserService service = new UserService();
         HttpSession session = req.getSession(true);
         try {
-            Customer customer= user.getByUsernameAndPassword(uname,DigestUtils.md5Hex(pass));
-            session.setAttribute("LOGIN_USER", customer);
-            resp.sendRedirect("adminPanel.html");
+            Customer user= service.getByUsernameAndPassword(uname,DigestUtils.md5Hex(pass));
+            session.setAttribute("LOGIN_USER", user);
+            resp.sendRedirect("adminPanel.jsp");
         } catch (Exception e){
             resp.getWriter().write(e.getMessage());
         }

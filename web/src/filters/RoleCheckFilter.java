@@ -1,6 +1,6 @@
 package filters;
 
-import model.customer.Customer;
+import models.customer.Customer;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -9,11 +9,10 @@ import java.io.IOException;
 
 public class RoleCheckFilter implements Filter {
 
-    private String contextPath;
+    private Customer User;
 
     @Override
     public void init(FilterConfig fc) throws ServletException {
-        //contextPath = fc.getServletContext().getContextPath();
     }
 
     @Override
@@ -22,11 +21,11 @@ public class RoleCheckFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
 
-        Customer user = (Customer) req.getSession().getAttribute("LOGIN_USER");
-        if (user == null) {
-            res.sendRedirect("index.html");
+        User = (Customer) req.getSession().getAttribute("LOGIN_USER");
+        if (User == null) {
+            res.sendRedirect("AuthorizationRegistration.jsp");
         } else {
-            switch (user.getRole()) {
+            switch (User.getRole()) {
                 case admin:
                     break;
                 case user:
