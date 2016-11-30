@@ -11,7 +11,7 @@
     <table id="6" parent="1" name="customer"/>
     <table id="7" parent="1" name="purchase"/>
     <table id="8" parent="1" name="product"/>
-    <table id="9" parent="1" name="type"/>
+    <table id="9" parent="1" name="producttype"/>
     <column id="10" parent="6" name="idcustomer">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
@@ -119,7 +119,7 @@
       <data-type>int(11)|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="35" parent="8" name="type">
+    <column id="35" parent="8" name="typeId">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
     </column>
@@ -132,7 +132,7 @@
     </column>
     <column id="38" parent="8" name="price">
       <mandatory>1</mandatory>
-      <data-type>int(11)|0</data-type>
+      <data-type>float|0</data-type>
     </column>
     <column id="39" parent="8" name="resolution">
       <data-type>varchar(45)|0</data-type>
@@ -180,7 +180,7 @@
       <data-type>bit(1)|0</data-type>
     </column>
     <index id="54" parent="8" name="type_fk_idx">
-      <columns>type</columns>
+      <columns>typeId</columns>
       <desc-columns></desc-columns>
     </index>
     <key id="55" parent="8" name="PRIMARY">
@@ -188,8 +188,8 @@
       <primary>1</primary>
     </key>
     <foreign-key id="56" parent="8" name="type_fk">
-      <columns>type</columns>
-      <ref-key>~.type.PRIMARY</ref-key>
+      <columns>typeId</columns>
+      <ref-key>~.producttype.PRIMARY</ref-key>
       <cascade-update-rule>no_action</cascade-update-rule>
       <cascade-delete-rule>no_action</cascade-delete-rule>
     </foreign-key>

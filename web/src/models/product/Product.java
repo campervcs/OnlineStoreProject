@@ -4,12 +4,16 @@ public abstract class Product{
     protected String model;
     protected String description;
     protected float price;
-    protected final long id;
+    protected ProductType typeid;
 
-    public Product(String model, String description, float price, long id) {
+    public Product(String model, String description, float price, ProductType typeid) {
         this.model = model;
         this.description = description;
         this.price=price;
-        this.id=id;
+        this.typeid=typeid;
     }
+    public abstract ProductType getType();
+    public abstract String getDescription();
+    public abstract String getModel();
+    public abstract float getPrice();
 }

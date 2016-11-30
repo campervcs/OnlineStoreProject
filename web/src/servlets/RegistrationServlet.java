@@ -1,7 +1,7 @@
 package servlets;
 
 import models.customer.Role;
-import services.UserService;
+import services.mySQLService.UserService;
 import models.customer.Customer;
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -22,11 +22,11 @@ public class RegistrationServlet extends HttpServlet {
         String adress = req.getParameter("adress");
         String fname = req.getParameter("fname");
         String lname = req.getParameter("lname");
-        Customer user = new Customer(fname,lname,mail,uname,DigestUtils.md5Hex(pass), Role.user,adress);
+        Customer user = new Customer(fname, lname, mail, uname, DigestUtils.md5Hex(pass), Role.user, adress);
         UserService userService = new UserService();
         try {
             userService.create(user);
-            resp.getWriter().write("Succeful create!");
+            resp.sendRedirect("/login");
         } catch (Exception e) {
             resp.getWriter().write(e.getMessage());
         }

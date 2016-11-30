@@ -1,6 +1,6 @@
 package servlets;
 import models.customer.Customer;
-import services.UserService;
+import services.mySQLService.UserService;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.servlet.ServletException;
@@ -15,7 +15,7 @@ public class AuthorizationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/AuthorizationRegistration.jsp").forward(req, resp);
+        req.getRequestDispatcher("/views/AuthorizationRegistration.jsp").forward(req, resp);
     }
 
     @Override
@@ -27,7 +27,7 @@ public class AuthorizationServlet extends HttpServlet {
         try {
             Customer user= service.getByUsernameAndPassword(uname,DigestUtils.md5Hex(pass));
             session.setAttribute("LOGIN_USER", user);
-            resp.sendRedirect("adminPanel.jsp");
+            resp.sendRedirect("/views/adminPanel.jsp");
         } catch (Exception e){
             resp.getWriter().write(e.getMessage());
         }

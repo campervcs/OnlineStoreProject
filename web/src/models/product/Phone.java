@@ -13,8 +13,8 @@ public class Phone extends Product {
     private String cpu;
 
 
-    public Phone(String model, String description, float price, long id) {
-        super(model, description, price, id);
+    public Phone(String model, String description, float price, ProductType typeid) {
+        super(model, description, price, typeid);
     }
 
     public void setRAM(int RAM) {
@@ -69,6 +69,7 @@ public class Phone extends Product {
         return OS;
     }
 
+    @Override
     public String getModel() {
         return model;
     }
@@ -101,14 +102,17 @@ public class Phone extends Product {
         return resolution;
     }
 
+    @Override
     public String getDescription() {
         return description;
     }
 
-    public long getID() {
-        return id;
+    @Override
+    public ProductType getType() {
+        return typeid;
     }
 
+    @Override
     public float getPrice(){
         return price;
     }

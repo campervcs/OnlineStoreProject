@@ -1,9 +1,8 @@
 package servlets;
 
 import models.customer.Customer;
-import models.customer.Role;
 import org.apache.commons.codec.digest.DigestUtils;
-import services.UserService;
+import services.mySQLService.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +20,7 @@ public class UserUpdateServlet extends HttpServlet {
         Customer currentUser = (Customer) req.getSession().getAttribute("LOGIN_USER");
         req.setAttribute("user", currentUser);
         if (currentUser!=null)
-        req.getRequestDispatcher("/UserUpdate.jsp").forward(req, resp);
+        req.getRequestDispatcher("/views/UserUpdate.jsp").forward(req, resp);
         else resp.sendRedirect("/login");
     }
 
@@ -43,7 +42,7 @@ public class UserUpdateServlet extends HttpServlet {
         UserService userService = new UserService();
         try {
             userService.update(currentUser);
-            req.getRequestDispatcher("/UserUpdate.jsp").forward(req, resp);
+            req.getRequestDispatcher("/views/UserUpdate.jsp").forward(req, resp);
         } catch (Exception e) {
             resp.getWriter().write("Problem with database");
         }

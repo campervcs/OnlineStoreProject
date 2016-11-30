@@ -23,13 +23,13 @@ public class RoleCheckFilter implements Filter {
 
         User = (Customer) req.getSession().getAttribute("LOGIN_USER");
         if (User == null) {
-            res.sendRedirect("AuthorizationRegistration.jsp");
+            res.sendRedirect("/login");
         } else {
             switch (User.getRole()) {
                 case admin:
                     break;
                 case user:
-                    res.sendRedirect("welcome.jsp");
+                    res.sendRedirect("/myStore");
                     break;
                 default:
                     break;

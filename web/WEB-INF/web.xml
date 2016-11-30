@@ -8,6 +8,14 @@
         <servlet-class>servlets.AuthorizationServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>MainPageServlet</servlet-name>
+        <servlet-class>servlets.MainPageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProductCreateServlet</servlet-name>
+        <servlet-class>servlets.ProductCreateServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>UserUpdateServlet</servlet-name>
         <servlet-class>servlets.UserUpdateServlet</servlet-class>
     </servlet>
@@ -35,12 +43,20 @@
         <servlet-name>UserUpdateServlet</servlet-name>
         <url-pattern>/update</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductCreateServlet</servlet-name>
+        <url-pattern>/createProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MainPageServlet</servlet-name>
+        <url-pattern>/myStore</url-pattern>
+    </servlet-mapping>
     <filter>
         <filter-name>RoleCheckFilter</filter-name>
         <filter-class>filters.RoleCheckFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>RoleCheckFilter</filter-name>
-        <url-pattern>/adminPanel.jsp</url-pattern>
+        <url-pattern>/views/adminPanel.jsp</url-pattern>
     </filter-mapping>
 </web-app>

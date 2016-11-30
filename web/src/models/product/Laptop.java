@@ -14,8 +14,8 @@ public class Laptop extends Product {
     private int USB_count;
     private boolean cd_dvd;
 
-    public Laptop(String model, String description, float price, long id) {
-        super(model, description, price, id);
+    public Laptop(String model, String description, float price, ProductType typeid) {
+        super(model, description, price, typeid);
     }
 
     public void setModel(String model) {
@@ -71,11 +71,12 @@ public class Laptop extends Product {
     }
 
 
-
+    @Override
     public String getModel() {
         return model;
     }
 
+    @Override
     public String getDescription() {
         return description;
     }
@@ -124,10 +125,12 @@ public class Laptop extends Product {
         return cd_dvd;
     }
 
-    public long getID() {
-        return id;
+    @Override
+    public ProductType getType() {
+        return typeid;
     }
 
+    @Override
     public float getPrice(){
         return price;
     }

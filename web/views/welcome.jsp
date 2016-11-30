@@ -3,17 +3,17 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" type="text/css" href="src/resources/css/stylesMain.css">
+    <link rel="stylesheet" type="text/css" href="../src/resources/css/stylesMain.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script src="src/resources/scripts/mainPage.js"></script>
+    <script src="../src/resources/scripts/mainPage.js"></script>
     <title>OnlineStore</title>
 </head>
 <body>
-<%@include file="/index.html" %>
+<%@include file="/views/index.html" %>
 <nav>
     <ul>
         <li><a href="#">About</a></li>
