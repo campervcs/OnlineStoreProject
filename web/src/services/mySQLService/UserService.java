@@ -7,18 +7,19 @@ import models.customer.Customer;
 import models.customer.Role;
 
 import java.sql.*;
+import java.util.LinkedList;
 import java.util.List;
 
 public class UserService implements UserDAO {
     private final static String URL = "jdbc:mysql://localhost:3306/onlinestore";
     private final static String USERNAME = "root";
     private final static String PASSWORD = "root";
+    private Connection connection = null;
+    private Statement statement = null;
 
     @Override
-    public Customer getByUsernameAndPassword(String username, String password) throws Exception {
+    public Customer getByUsernameAndPassword(String username, String password) throws SQLException,CantFindUserException {
         Customer customer = null;
-        Connection connection = null;
-        Statement statement = null;
         try {
             connection = getDBConnection();
             statement = connection.createStatement();
@@ -28,6 +29,7 @@ public class UserService implements UserDAO {
                 customer = new Customer(res.getString("fname"),
                         res.getString("lname"), res.getString("mail"), res.getString("username"),
                         res.getString("password"), Role.valueOf(res.getString("role")), res.getString("adress"));
+                customer.setBan("1".equals(res.getString("ban")));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -35,19 +37,32 @@ public class UserService implements UserDAO {
             if (statement != null) statement.close();
             if (connection != null) connection.close();
         }
-        if (customer == null) throw new CantFindUserException();
+        if (customer == null) throw new CantFindUserException("Wrong username or password");
         else return customer;
     }
 
     @Override
-    public List<Customer> getAllUsers() {
-        return null;
+    public List<Customer> getAllUsers() throws SQLException {
+        List<Customer> userList = new LinkedList<>();
+        try {
+            connection = getDBConnection();
+            statement = connection.createStatement();
+            ResultSet res = statement.executeQuery("SELECT * FROM customer");
+            while (res.next()){
+                userList.add(new Customer(res.getString("fname"),res.getString("lname"),res.getString("mail"),res.getString("username"),res.getString("password"),Role.valueOf(res.getString("role")),res.getString("adress")));
+            }
+            return userList;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            if (statement != null) statement.close();
+            if (connection != null) connection.close();
+        }
+        return userList;
     }
 
     @Override
-    public void create(Customer customer) throws Exception {
-        Connection connection = null;
-        Statement statement = null;
+    public void create(Customer customer) throws SQLException,UserExistException {
         try {
             connection = getDBConnection();
             statement = connection.createStatement();
@@ -59,7 +74,7 @@ public class UserService implements UserDAO {
                         customer.getLname() + "','" + customer.getMail() + "','" +
                         customer.getUsername() + "','" + customer.getPassword() + "','" +
                         customer.getRole().toString() + "','" + customer.getAdress() + "')");
-            } else throw new UserExistException();
+            } else throw new UserExistException("Username already exist",customer.getUsername());
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
@@ -70,8 +85,6 @@ public class UserService implements UserDAO {
 
     @Override
     public void update(Customer customer) throws SQLException {
-        Connection connection = null;
-        Statement statement = null;
         try {
             connection = getDBConnection();
             statement = connection.createStatement();
@@ -85,6 +98,11 @@ public class UserService implements UserDAO {
             if (statement != null) statement.close();
             if (connection != null) connection.close();
         }
+    }
+
+    @Override
+    public void delete(Customer customer) throws SQLException {
+
     }
 
 

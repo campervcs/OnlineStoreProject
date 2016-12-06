@@ -5,6 +5,7 @@ public abstract class Product{
     protected String description;
     protected float price;
     protected ProductType typeid;
+    protected int id;
 
     public Product(String model, String description, float price, ProductType typeid) {
         this.model = model;
@@ -16,4 +17,6 @@ public abstract class Product{
     public abstract String getDescription();
     public abstract String getModel();
     public abstract float getPrice();
+    public abstract int getId();
+    public abstract void setId(int id);
 }

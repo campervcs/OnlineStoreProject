@@ -40,6 +40,6 @@ public class ProductCreateServlet extends HttpServlet {
         } catch (SQLException e) {
             resp.getWriter().write(e.getMessage());
         }
-        resp.sendRedirect("/views/adminPanel.jsp");
+        resp.sendRedirect("/AdminPanel");
     }
 }

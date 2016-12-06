@@ -135,6 +135,17 @@ public class Laptop extends Product {
         return price;
     }
 
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id=id;
+
+    }
+
     public void setPrice(float price){
         this.price=price;
     }

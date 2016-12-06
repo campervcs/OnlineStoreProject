@@ -1,4 +1,6 @@
 package servlets;
+import exceptions.CantFindUserException;
+import exceptions.UserExistException;
 import models.customer.Customer;
 import services.mySQLService.UserService;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -10,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
+
 @WebServlet("/servlets.AuthorizationServlet")
 public class AuthorizationServlet extends HttpServlet {
 
@@ -26,9 +30,12 @@ public class AuthorizationServlet extends HttpServlet {
         HttpSession session = req.getSession(true);
         try {
             Customer user= service.getByUsernameAndPassword(uname,DigestUtils.md5Hex(pass));
-            session.setAttribute("LOGIN_USER", user);
-            resp.sendRedirect("/views/adminPanel.jsp");
-        } catch (Exception e){
+            if (!user.isBan()) {
+                session.setAttribute("LOGIN_USER", user);
+                resp.sendRedirect("/myStore");
+            } else resp.sendRedirect("/login");
+
+        } catch (SQLException | CantFindUserException e){
             resp.getWriter().write(e.getMessage());
         }
 

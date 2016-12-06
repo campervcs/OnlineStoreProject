@@ -2,13 +2,15 @@ package models.customer;
 
 import models.product.Product;
 
-import java.util.Stack;
+import java.util.LinkedList;
 
-//Singleton
 public class Cart {
-    private Stack<Product> cart = new Stack<Product>();
-    public Product peekProduct() {
-        return cart.peek();
+    private LinkedList<Product> cart = new LinkedList<>();
+    public Product getProduct(int id) {
+        for(Product product: cart){
+            if (product.getId()==id) return product;
+        }
+        return null;
     }
     public Product popProduct() {
         return cart.pop();

@@ -1,5 +1,6 @@
 package servlets;
 
+import exceptions.UserExistException;
 import models.customer.Role;
 import services.mySQLService.UserService;
 import models.customer.Customer;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/servlets.RegistrationServlet")
 public class RegistrationServlet extends HttpServlet {
@@ -27,8 +29,11 @@ public class RegistrationServlet extends HttpServlet {
         try {
             userService.create(user);
             resp.sendRedirect("/login");
-        } catch (Exception e) {
+        } catch (SQLException e) {
             resp.getWriter().write(e.getMessage());
+        }
+        catch (UserExistException ex) {
+            resp.getWriter().write(ex.getMessage()+" "+ex.getUsername());
         }
     }
 }

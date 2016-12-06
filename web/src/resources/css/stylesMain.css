@@ -546,7 +546,7 @@ nav ul li a:hover {
 }
 .btn-open:after {
     color:#333;
-    content:"\f0c9";
+    content:"\f218";
     font-family:"FontAwesome";
     transition-property:all .2s linear 0s;
     -moz-transition:all .2s linear 0s;
@@ -689,7 +689,7 @@ nav ul li a:hover {
 }
 .content {
     width:100%;
-    margin-top:200px;
+    margin-top:20px;
     font-size:20px;
     color:#333;
     text-align: center;

@@ -7,38 +7,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class RoleCheckFilter implements Filter {
-
-    private Customer User;
-
+public class AuthorizationFilter implements Filter {
     @Override
-    public void init(FilterConfig fc) throws ServletException {
+    public void init(FilterConfig filterConfig) throws ServletException {
+
     }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain fc) throws IOException, ServletException {
-
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
 
-        User = (Customer) req.getSession().getAttribute("LOGIN_USER");
+        Customer User = (Customer) req.getSession().getAttribute("LOGIN_USER");
         if (User == null) {
             res.sendRedirect("/login");
-        } else {
-            switch (User.getRole()) {
-                case admin:fc.doFilter(request, response);
-                    break;
-                case user:
-                    res.sendRedirect("/myStore");
-                    break;
-                default:
-                    break;
-            }
-
-        }
+        } else fc.doFilter(request, response);
     }
 
     @Override
     public void destroy() {
+
     }
 }

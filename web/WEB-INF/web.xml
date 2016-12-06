@@ -8,6 +8,10 @@
         <servlet-class>servlets.AuthorizationServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>AdminPanelServlet</servlet-name>
+        <servlet-class>servlets.AdminPanelServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>MainPageServlet</servlet-name>
         <servlet-class>servlets.MainPageServlet</servlet-class>
     </servlet>
@@ -51,12 +55,31 @@
         <servlet-name>MainPageServlet</servlet-name>
         <url-pattern>/myStore</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminPanelServlet</servlet-name>
+        <url-pattern>/AdminPanel</url-pattern>
+    </servlet-mapping>
     <filter>
         <filter-name>RoleCheckFilter</filter-name>
         <filter-class>filters.RoleCheckFilter</filter-class>
     </filter>
+    <filter>
+        <filter-name>AuthorizationFilter</filter-name>
+        <filter-class>filters.AuthorizationFilter</filter-class>
+    </filter>
     <filter-mapping>
         <filter-name>RoleCheckFilter</filter-name>
-        <url-pattern>/views/adminPanel.jsp</url-pattern>
+        <servlet-name>AdminPanelServlet</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthorizationFilter</filter-name>
+        <url-pattern>/views/index.html</url-pattern>
+        <url-pattern>/views/UserUpdate.jsp</url-pattern>
+        <url-pattern>/views/welcome.jsp</url-pattern>
+        <url-pattern>/views/header.jsp</url-pattern>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-name>MainPageServlet</servlet-name>
+        <servlet-name>ProductCreateServlet</servlet-name>
+        <servlet-name>UserUpdateServlet</servlet-name>
     </filter-mapping>
 </web-app>

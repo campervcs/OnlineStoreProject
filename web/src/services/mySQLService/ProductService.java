@@ -12,6 +12,8 @@ public class ProductService implements ProductDAO {
     private final static String PASSWORD = "root";
     private List<Product> allProducts;
     private List<Product> currentTypeProduct;
+    private Connection connection = null;
+    private Statement statement = null;
 
     @Override
     public List<Product> getAllProducts() {
@@ -25,8 +27,6 @@ public class ProductService implements ProductDAO {
 
     @Override
     public void create(Product product) throws SQLException {
-        Connection connection = null;
-        Statement statement = null;
         try {
             connection = getDBConnection();
             statement = connection.createStatement();

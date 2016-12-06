@@ -9,6 +9,7 @@ public class Customer {
     private Role role;
     private Cart cart;
     private String adress;
+    private boolean ban = false;
 
     public Customer(String fname, String lname, String mail, String username, String password, Role role, String adress) {
         cart = new Cart();
@@ -19,6 +20,14 @@ public class Customer {
         this.adress=adress;
         this.fname=fname;
         this.lname=lname;
+    }
+
+    public boolean isBan() {
+        return ban;
+    }
+
+    public void setBan(boolean ban) {
+        this.ban = ban;
     }
 
     public void setPassword(String password) {
