@@ -47,6 +47,7 @@
             <th>Username</th>
             <th>Role</th>
             <th>Address</th>
+            <th>Ban status</th>
             <th>Settings</th>
         </tr>
         </thead>
@@ -65,6 +66,8 @@
             </td>
             <td><%=user.getAdress()%>
             </td>
+            <td><%=user.isBan()%>
+            </td>
             <td>
                 <div class="btn-group">
                     <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span
@@ -72,7 +75,11 @@
                     <ul class="dropdown-menu">
                         <li><a href="#"><i class="icon-pencil"></i> Редактировать</a></li>
                         <li><a href="#"><i class="icon-trash"></i> Удалить</a></li>
-                        <li><a href="#"><i class="icon-ban-circle"></i> Запретить</a></li>
+                        <%if (!user.isBan()) {%>
+                        <li><a href="#"><i class="icon-ban-circle"></i> Забанить</a></li>
+                        <%}else{%>
+                        <li><a href="#"><i class="icon-ban-circle"></i> Разбанить</a></li>
+                        <%}%>
                         <li class="divider"></li>
                         <li><a href="#"><i class="i"></i> Назначить администратором</a></li>
                     </ul>

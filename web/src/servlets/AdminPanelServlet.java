@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/servlets.AdminPanelServlet")
+@WebServlet("/AdminPanel")
 
 public class AdminPanelServlet extends HttpServlet {
 

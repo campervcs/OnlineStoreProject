@@ -1,6 +1,9 @@
 package models.product;
 
+import java.io.Serializable;
+
 public class Phone extends Product {
+    private static final long serialVersionUID = 1L;
     private String resolution;
     private String OS;
     private int diagonal;
@@ -16,6 +19,7 @@ public class Phone extends Product {
     public Phone(String model, String description, float price, ProductType typeid) {
         super(model, description, price, typeid);
     }
+    public Phone(){}
 
     public void setRAM(int RAM) {
         this.RAM = RAM;
@@ -126,6 +130,16 @@ public class Phone extends Product {
     public void setId(int id) {
         this.id=id;
 
+    }
+
+    @Override
+    public void setCount(int Count) {
+        this.count=Count;
+    }
+
+    @Override
+    public int getCount() {
+        return count;
     }
 
     public void setPrice(float price){

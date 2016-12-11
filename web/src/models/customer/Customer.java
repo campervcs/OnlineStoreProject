@@ -10,9 +10,9 @@ public class Customer {
     private Cart cart;
     private String adress;
     private boolean ban = false;
+    private int id;
 
-    public Customer(String fname, String lname, String mail, String username, String password, Role role, String adress) {
-        cart = new Cart();
+    public Customer(String fname, String lname, String mail, String username, String password, Role role, String adress, Boolean ban) {
         this.mail = mail;
         this.password = password;
         this.role=role;
@@ -20,6 +20,7 @@ public class Customer {
         this.adress=adress;
         this.fname=fname;
         this.lname=lname;
+        this.ban=ban;
     }
 
     public boolean isBan() {
@@ -89,4 +90,17 @@ public class Customer {
     public void setAdress(String adress) {
         this.adress = adress;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
 }

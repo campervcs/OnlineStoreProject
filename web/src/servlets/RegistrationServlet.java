@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/servlets.RegistrationServlet")
+@WebServlet("/register")
 public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -24,7 +24,7 @@ public class RegistrationServlet extends HttpServlet {
         String adress = req.getParameter("adress");
         String fname = req.getParameter("fname");
         String lname = req.getParameter("lname");
-        Customer user = new Customer(fname, lname, mail, uname, DigestUtils.md5Hex(pass), Role.user, adress);
+        Customer user = new Customer(fname, lname, mail, uname, DigestUtils.md5Hex(pass), Role.user, adress,false);
         UserService userService = new UserService();
         try {
             userService.create(user);

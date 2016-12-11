@@ -575,7 +575,7 @@ nav ul li a:hover {
     top:0;
     height:100%;
     width:100%;
-    background:#333;
+    background: #F7F7F7;
     overflow:auto;
     z-index:99;
 }

@@ -1,6 +1,9 @@
 package models.product;
 
+import java.io.Serializable;
+
 public class Laptop extends Product {
+    private static final long serialVersionUID = 1L;
     private String cpu;
     private String graphicsCard;
     private String OS;
@@ -17,6 +20,8 @@ public class Laptop extends Product {
     public Laptop(String model, String description, float price, ProductType typeid) {
         super(model, description, price, typeid);
     }
+
+    public Laptop(){}
 
     public void setModel(String model) {
         this.model = model;
@@ -144,6 +149,16 @@ public class Laptop extends Product {
     public void setId(int id) {
         this.id=id;
 
+    }
+
+    @Override
+    public void setCount(int Count) {
+        this.count=Count;
+    }
+
+    @Override
+    public int getCount() {
+        return count;
     }
 
     public void setPrice(float price){

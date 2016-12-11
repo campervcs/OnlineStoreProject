@@ -18,11 +18,21 @@ p button{
     padding: 2% 0 0;
     margin: -100px auto 100px;
 }
+.product_list{
+    padding: 2% 0 0;
+    width: 700px;
+    margin: 40px auto 100px;
+    position: relative;
+    display: block;
+    z-index: 50;
+    background: #FFFFFF;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
 #add_product{
     display: none;
 }
 #show_users{
-    width: 700px;
+    width: 750px;
     position: relative;
     display: none;
     z-index: 50;

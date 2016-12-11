@@ -2,20 +2,38 @@ package models.customer;
 
 import models.product.Product;
 
-import java.util.LinkedList;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Cart {
-    private LinkedList<Product> cart = new LinkedList<>();
+public class Cart implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private List<Product> cart = new ArrayList<>();
+
+    public Cart() {
+    }
+
+    public List<Product> getCartList() {
+        return cart;
+    }
+
     public Product getProduct(int id) {
-        for(Product product: cart){
-            if (product.getId()==id) return product;
+        for (Product product : cart) {
+            if (product.getId() == id) return product;
         }
         return null;
     }
-    public Product popProduct() {
-        return cart.pop();
+
+    public void addProduct(Product product) {
+        for (Product aCart : cart) {
+            if (aCart.getId() == product.getId()) {
+                aCart.setCount(aCart.getCount()+1);
+                return;
+            }
+        }
+        cart.add(product);
     }
-    public void pushProduct(Product product) {
-        cart.push(product);
-    }
+
+
+
 }

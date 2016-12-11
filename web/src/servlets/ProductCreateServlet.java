@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/servlets.ProductCreateServlet")
+@WebServlet("/createProduct")
 public class ProductCreateServlet extends HttpServlet {
 
     @Override

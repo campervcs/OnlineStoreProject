@@ -5,15 +5,16 @@ import exceptions.CantFindUserException;
 import exceptions.UserExistException;
 import models.customer.Customer;
 import models.customer.Role;
+import services.dbService.DBConnector;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 
 public class UserService implements UserDAO {
-    private final static String URL = "jdbc:mysql://localhost:3306/onlinestore";
-    private final static String USERNAME = "root";
-    private final static String PASSWORD = "root";
     private Connection connection = null;
     private Statement statement = null;
 
@@ -21,15 +22,16 @@ public class UserService implements UserDAO {
     public Customer getByUsernameAndPassword(String username, String password) throws SQLException,CantFindUserException {
         Customer customer = null;
         try {
-            connection = getDBConnection();
+            connection = DBConnector.getDBConnection();
             statement = connection.createStatement();
             ResultSet res = statement.executeQuery("SELECT * FROM customer WHERE username = '"
                     + username + "' AND password = '" + password + "'");
             while (res.next()) {
                 customer = new Customer(res.getString("fname"),
                         res.getString("lname"), res.getString("mail"), res.getString("username"),
-                        res.getString("password"), Role.valueOf(res.getString("role")), res.getString("adress"));
-                customer.setBan("1".equals(res.getString("ban")));
+                        res.getString("password"), Role.valueOf(res.getString("role")), res.getString("adress"),res.getBoolean("ban"));
+                customer.setBan(res.getBoolean("ban"));
+                customer.setId(res.getInt("idcustomer"));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -45,11 +47,13 @@ public class UserService implements UserDAO {
     public List<Customer> getAllUsers() throws SQLException {
         List<Customer> userList = new LinkedList<>();
         try {
-            connection = getDBConnection();
+            connection = DBConnector.getDBConnection();
             statement = connection.createStatement();
             ResultSet res = statement.executeQuery("SELECT * FROM customer");
             while (res.next()){
-                userList.add(new Customer(res.getString("fname"),res.getString("lname"),res.getString("mail"),res.getString("username"),res.getString("password"),Role.valueOf(res.getString("role")),res.getString("adress")));
+                Customer customer;
+                userList.add(customer=new Customer(res.getString("fname"),res.getString("lname"),res.getString("mail"),res.getString("username"),res.getString("password"),Role.valueOf(res.getString("role")),res.getString("adress"),res.getBoolean("ban")));
+                customer.setId(res.getInt("idcustomer"));
             }
             return userList;
         } catch (SQLException e) {
@@ -64,7 +68,7 @@ public class UserService implements UserDAO {
     @Override
     public void create(Customer customer) throws SQLException,UserExistException {
         try {
-            connection = getDBConnection();
+            connection = DBConnector.getDBConnection();
             statement = connection.createStatement();
             ResultSet res = statement.executeQuery("SELECT username FROM customer " +
                     "WHERE username = '" + customer.getUsername() + "'");
@@ -86,7 +90,7 @@ public class UserService implements UserDAO {
     @Override
     public void update(Customer customer) throws SQLException {
         try {
-            connection = getDBConnection();
+            connection = DBConnector.getDBConnection();
             statement = connection.createStatement();
             statement.executeUpdate("UPDATE customer SET fname ='" + customer.getFname() +
                     "',lname='" + customer.getLname() + "', password='" +
@@ -102,36 +106,6 @@ public class UserService implements UserDAO {
 
     @Override
     public void delete(Customer customer) throws SQLException {
-
-    }
-
-
-    private static Connection getDBConnection() {
-
-        Connection dbConnection = null;
-
-        try {
-
-            Class.forName("com.mysql.jdbc.Driver");
-
-        } catch (ClassNotFoundException e) {
-
-            System.out.println(e.getMessage());
-
-        }
-
-        try {
-
-            dbConnection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            return dbConnection;
-
-        } catch (SQLException e) {
-
-            System.out.println(e.getMessage());
-
-        }
-
-        return dbConnection;
 
     }
 }
