@@ -1,9 +1,7 @@
 package models.product;
 
-import java.io.Serializable;
 
 public class Laptop extends Product {
-    private static final long serialVersionUID = 1L;
     private String cpu;
     private String graphicsCard;
     private String OS;

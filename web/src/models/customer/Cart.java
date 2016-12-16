@@ -1,13 +1,12 @@
 package models.customer;
 
 import models.product.Product;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cart implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Cart{
+
+
     private List<Product> cart = new ArrayList<>();
 
     public Cart() {
@@ -35,5 +34,7 @@ public class Cart implements Serializable {
     }
 
 
-
+    public void setCart(List<Product> cart) {
+        this.cart = cart;
+    }
 }

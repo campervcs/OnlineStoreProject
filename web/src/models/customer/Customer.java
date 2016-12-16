@@ -13,6 +13,7 @@ public class Customer {
     private int id;
 
     public Customer(String fname, String lname, String mail, String username, String password, Role role, String adress, Boolean ban) {
+        cart=new Cart();
         this.mail = mail;
         this.password = password;
         this.role=role;
@@ -97,10 +98,6 @@ public class Customer {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
     }
 
 }

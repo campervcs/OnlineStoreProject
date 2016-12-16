@@ -26,4 +26,7 @@
         <url-pattern>/createProduct</url-pattern>
         <url-pattern>/update</url-pattern>
     </filter-mapping>
+    <listener>
+        <listener-class>servlets.CartListenerServlet</listener-class>
+    </listener>
 </web-app>

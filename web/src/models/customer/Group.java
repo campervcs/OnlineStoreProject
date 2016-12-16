@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Group {
-    List<Customer> customerList = new ArrayList<>();
+    private List<Customer> customerList = new ArrayList<>();
     public List<Customer> getCustomerList() {
         return customerList;
     }

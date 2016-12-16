@@ -1,9 +1,6 @@
 package models.product;
 
-import java.io.Serializable;
-
 public class Phone extends Product {
-    private static final long serialVersionUID = 1L;
     private String resolution;
     private String OS;
     private int diagonal;

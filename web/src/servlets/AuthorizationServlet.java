@@ -1,13 +1,9 @@
 package servlets;
 
 import exceptions.CantFindUserException;
-import models.customer.Cart;
 import models.customer.Customer;
-import models.product.Product;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.lang3.StringUtils;
-import services.CartService;
-import services.mySQLService.ProductService;
+import services.mySQLService.CartService;
 import services.mySQLService.UserService;
 
 import javax.servlet.ServletException;
@@ -32,23 +28,16 @@ public class AuthorizationServlet extends HttpServlet {
         HttpSession session = req.getSession(true);
         try {
             Customer user = service.getByUsernameAndPassword(uname, DigestUtils.md5Hex(pass));
-            //Читаем корзину из куки
-            Cookie[] cookies = req.getCookies();
-            String cookieResult = "";
-            for (Cookie cookie : cookies) {
-                if (("Cart"+String.valueOf(user.getId())).equals(cookie.getName())) cookieResult = cookie.getValue();
-            }
-            user.setCart((Cart)CartService.fromString(cookieResult));
 
             if (!user.isBan()) {
+                //Достаем корзину из базы
+                user.getCart().setCart((new CartService()).getProductList(user.getId()));
                 session.setAttribute("LOGIN_USER", user);
                 resp.sendRedirect("/myStore");
             } else resp.sendRedirect("/login");
 
         } catch (SQLException | CantFindUserException e) {
             resp.getWriter().write(e.getMessage());
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
 
     }

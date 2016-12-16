@@ -91,12 +91,48 @@ public class OnlineStoreServletContextListener implements ServletContextListener
                     "  CONSTRAINT `customer_fk` FOREIGN KEY (`customerId`) REFERENCES `customer` (`idcustomer`) ON DELETE NO ACTION ON UPDATE NO ACTION," +
                     "  CONSTRAINT `product_fk` FOREIGN KEY (`productId`) REFERENCES `product` (`idproduct`) ON DELETE NO ACTION ON UPDATE NO ACTION" +
                     ") ENGINE=InnoDB DEFAULT CHARSET=utf8";
+            String createTableGroup="CREATE TABLE IF NOT EXISTS `group` (" +
+                    "  `idgroup` int(11) NOT NULL AUTO_INCREMENT," +
+                    "  `name` varchar(45) NOT NULL," +
+                    "  `memberCount` int(11) NOT NULL DEFAULT '1'," +
+                    "  `admin_id` int(11) NOT NULL," +
+                    "  PRIMARY KEY (`idgroup`)," +
+                    "  UNIQUE KEY `idgroup_UNIQUE` (`idgroup`)," +
+                    "  KEY `fk_admin_id_idx` (`admin_id`)," +
+                    "  CONSTRAINT `fk_admin_id` FOREIGN KEY (`admin_id`) REFERENCES `customer` (`idcustomer`) ON DELETE NO ACTION ON UPDATE NO ACTION" +
+                    ") ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8";
+            String createTableGroup_Customer="CREATE TABLE IF NOT EXISTS `group_customer` (" +
+                    "  `idgroup_customer` int(11) NOT NULL AUTO_INCREMENT," +
+                    "  `customer_id` int(11) NOT NULL," +
+                    "  `group_id` int(11) NOT NULL," +
+                    "  PRIMARY KEY (`idgroup_customer`),\n" +
+                    "  UNIQUE KEY `idgroup_customer_UNIQUE` (`idgroup_customer`)," +
+                    "  KEY `pk_customerid_idx` (`customer_id`)," +
+                    "  KEY `pk_groupid_idx` (`group_id`)," +
+                    "  CONSTRAINT `pk_customerid` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`idcustomer`) ON DELETE NO ACTION ON UPDATE NO ACTION," +
+                    "  CONSTRAINT `pk_groupid` FOREIGN KEY (`group_id`) REFERENCES `group` (`idgroup`) ON DELETE NO ACTION ON UPDATE NO ACTION" +
+                    ") ENGINE=InnoDB DEFAULT CHARSET=utf8";
+            String createTableCart="CREATE TABLE `cart` (" +
+                    "  `idcart` int(11) NOT NULL AUTO_INCREMENT," +
+                    "  `product_id` int(11) NOT NULL," +
+                    "  `customer_id` int(11) NOT NULL," +
+                    "  `count` int(11) NOT NULL DEFAULT '1'," +
+                    "  PRIMARY KEY (`idcart`)," +
+                    "  UNIQUE KEY `idcart_UNIQUE` (`idcart`)," +
+                    "  KEY `fk_customerCart_idx` (`customer_id`)," +
+                    "  KEY `fk_productCart_idx` (`product_id`)," +
+                    "  CONSTRAINT `fk_customerCart` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`idcustomer`) ON DELETE NO ACTION ON UPDATE NO ACTION," +
+                    "  CONSTRAINT `fk_productCart` FOREIGN KEY (`product_id`) REFERENCES `product` (`idproduct`) ON DELETE NO ACTION ON UPDATE NO ACTION" +
+                    ") ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8";
             stmt.addBatch(createTableCustomer_sql);
             stmt.addBatch(createTableProductType_sql);
             stmt.addBatch(createTableProduct_sql);
             stmt.addBatch(createTablePurchase_sql);
+            stmt.addBatch(createTableGroup);
+            stmt.addBatch(createTableGroup_Customer);
             stmt.addBatch(InsertToCustomer);
             stmt.addBatch(InsertToProductType);
+            stmt.addBatch(createTableCart);
             stmt.executeBatch();
             stmt.close();
             conn.close();
